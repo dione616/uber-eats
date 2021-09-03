@@ -6,4 +6,8 @@ export class Restaurant{
   id:string
   @Field(()=>String)
   name:string
+  @Field(()=>Boolean,{nullable:true})
+  vegan?:boolean
+  @Field(()=>String)
+  address:string
 }

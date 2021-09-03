@@ -5,8 +5,14 @@
 type Restaurant {
   id: String!
   name: String!
+  vegan: Boolean
+  address: String!
 }
 
 type Query {
-  myRestaurant: Restaurant!
+  restaurants(vegan: Boolean!): [Restaurant!]!
+}
+
+type Mutation {
+  createRestaurant(id: String!, name: String!, vegan: Boolean!, address: String!): Restaurant!
 }
