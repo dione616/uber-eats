@@ -7,10 +7,11 @@ type Restaurant {
   name: String!
   vegan: Boolean
   address: String!
+  category: String!
 }
 
 type Query {
-  restaurants(vegan: Boolean!): [Restaurant!]!
+  restaurants: [Restaurant!]!
 }
 
 type Mutation {
