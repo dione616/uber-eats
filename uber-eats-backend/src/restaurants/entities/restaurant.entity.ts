@@ -3,20 +3,20 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
 @Entity()
-export class Restaurant{
+export class Restaurant {
   @PrimaryGeneratedColumn()
-  @Field(()=>String)
-  id:string
-  @Field(()=>String)
+  @Field(() => String)
+  id: string;
+  @Field(() => String)
   @Column()
-  name:string
-  @Field(()=>Boolean,{nullable:true})
+  name: string;
+  @Field(() => Boolean, { nullable: true })
   @Column()
-  vegan?:boolean
-  @Field(()=>String)
+  vegan?: boolean;
+  @Field(() => String)
   @Column()
-  address:string
-  @Field(()=>String)
+  address: string;
+  @Field(() => String)
   @Column()
-  category:string
+  category: string;
 }
