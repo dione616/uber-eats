@@ -2,6 +2,38 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Restaurant {
+  id: String!
+  name: String!
+  vegan: Boolean!
+  address: String!
+  category: String!
+}
+
 type Query {
-  isPizzaGood: Boolean!
+  restaurants: [Restaurant!]!
+}
+
+type Mutation {
+  createRestaurant(input: CreateRestaurantDTO!): Restaurant!
+  updateRestaurant(input: UpdateRestaurantDTO!): Restaurant!
+}
+
+input CreateRestaurantDTO {
+  name: String!
+  vegan: Boolean = false
+  address: String!
+  category: String!
+}
+
+input UpdateRestaurantDTO {
+  id: String!
+  data: UpdateRestaurantInputType!
+}
+
+input UpdateRestaurantInputType {
+  name: String
+  vegan: Boolean = false
+  address: String
+  category: String
 }
