@@ -1,3 +1,4 @@
+import { LoginInput, LoginOutput } from './dtos/login.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -25,6 +26,22 @@ export class UsersService {
       this.users.save(this.users.create({ email, password, role }));
     } catch (error) {
       return "Couldn't create account!";
+    }
+  }
+
+  async login({ email, password }: LoginInput): Promise<LoginOutput> {
+    try {
+      const user = await this.users.findOne({ email });
+      if (!user) {
+        return { ok: false, error: 'Wrong credentials!' };
+      }
+      const passwordCorrect = await user.checkPassword(password);
+      if (!passwordCorrect) {
+        return { ok: false, error: 'Wrong credentials!' };
+      }
+      return { ok: true, token: 'token' };
+    } catch (error) {
+      return { ok: false, error: 'Wrong credentials!' };
     }
   }
 }
