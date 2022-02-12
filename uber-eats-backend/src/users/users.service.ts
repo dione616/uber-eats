@@ -1,3 +1,5 @@
+import { ConfigService } from '@nestjs/config';
+import * as jwt from 'jsonwebtoken';
 import { LoginInput, LoginOutput } from './dtos/login.dto';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -7,7 +9,10 @@ import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private users: Repository<User>) {}
+  constructor(
+    @InjectRepository(User) private users: Repository<User>,
+    private readonly config: ConfigService,
+  ) {}
 
   getUser(): Promise<User> {
     return this.users.find().then((users) => users[0]);
@@ -39,7 +44,8 @@ export class UsersService {
       if (!passwordCorrect) {
         return { ok: false, error: 'Wrong credentials!' };
       }
-      return { ok: true, token: 'token' };
+      const token = jwt.sign({ id: user.id }, this.config.get('SECRET_KEY'));
+      return { ok: true, token };
     } catch (error) {
       return { ok: false, error: 'Wrong credentials!' };
     }

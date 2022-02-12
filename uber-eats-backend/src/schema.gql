@@ -2,9 +2,10 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type MutationOutput {
+type LoginOutput {
   error: String
   ok: Boolean!
+  token: String
 }
 
 type CreateAccountOutput {
@@ -18,7 +19,7 @@ type Query {
 
 type Mutation {
   createAccount(input: CreateAccountInput!): CreateAccountOutput!
-  login(input: LoginInput!): MutationOutput!
+  login(input: LoginInput!): LoginOutput!
 }
 
 input CreateAccountInput {

@@ -34,12 +34,12 @@ export class UsersResolver {
     }
   }
 
-  @Mutation(() => MutationOutput)
+  @Mutation(() => LoginOutput)
   async login(@Args('input') loginInput: LoginInput): Promise<LoginOutput> {
     try {
       return await this.usersService.login(loginInput);
     } catch (error) {
-      return { ok: false, error };
+      return { ok: false, error, token: '' };
     }
   }
 }
