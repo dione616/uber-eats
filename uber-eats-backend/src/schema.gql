@@ -2,6 +2,12 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type LoginOutput {
+  error: String
+  ok: Boolean!
+  token: String
+}
+
 type CreateAccountOutput {
   error: String
   ok: Boolean!
@@ -13,6 +19,7 @@ type Query {
 
 type Mutation {
   createAccount(input: CreateAccountInput!): CreateAccountOutput!
+  login(input: LoginInput!): LoginOutput!
 }
 
 input CreateAccountInput {
@@ -26,4 +33,9 @@ enum Role {
   CLIENT
   DELIVERY
   ADMIN
+}
+
+input LoginInput {
+  email: String!
+  password: String!
 }
